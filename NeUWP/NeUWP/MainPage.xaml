@@ -1,0 +1,18 @@
+﻿<ctl:PageBase
+    x:Class="NeUWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NeUWP"
+    xmlns:ctl="using:NeUWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button Content="测试弹窗" Click="dialogTest"/>
+        <Button Content="测试Image" Click="imageTest"/>
+        <Button Content="测试pivot" Click="pivotTest"/>
+        <Button Content="测试ListView" Click="listTest"/>
+        <Button Content="测试GridView" Click="gridviewTest"/>
+    </StackPanel>
+</ctl:PageBase>

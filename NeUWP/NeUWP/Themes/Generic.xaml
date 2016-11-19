@@ -1,0 +1,325 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="using:NeUWP.Controls">
+
+    <Style TargetType="controls:MDrawer">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:MDrawer">
+                    <Grid x:Name="root"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        ManipulationMode="None"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid.Resources>
+                            <Duration x:Key="duration">0:0:0.30</Duration>
+                        </Grid.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="PanelState">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Open" >
+                                    <Storyboard x:Name="PopupOpenStoryboard">
+                                        <DoubleAnimation     To="0" Duration="{StaticResource duration}" Storyboard.TargetProperty="X" Storyboard.TargetName="translate">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Hide" >
+                                    <Storyboard x:Name="PopupCloseStoryboard">
+                                        <DoubleAnimation   To="{TemplateBinding PRange}" Duration="{StaticResource duration}" Storyboard.TargetProperty="X" Storyboard.TargetName="translate">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="Container"  Width="{TemplateBinding PRange}" HorizontalAlignment="Right" Background="Transparent" VerticalAlignment="Stretch">
+                            <Grid.RenderTransform>
+                                <TranslateTransform x:Name="translate"  />
+                            </Grid.RenderTransform>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                                <Grid.Background>
+                                    <LinearGradientBrush EndPoint="0,0.5" StartPoint="1,0.5">
+                                        <GradientStop Color="#3F000000" Offset="0"/>
+                                        <GradientStop Color="#3F000000" Offset="0"/>
+                                        <GradientStop Color="#00000000" Offset="1"/>
+                                        <GradientStop Color="#00000000" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Grid.Background>
+                            </Grid>
+                            <Grid Grid.Column="1" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <ContentPresenter  HorizontalAlignment="Stretch" Content="{TemplateBinding Content}"   VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:MDilog" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:MDilog">
+                    <Grid
+                        x:Name="root"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        >
+                        <Grid  x:Name="ChildContainer" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <Button x:Name="close" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Orange" Visibility="Collapsed">
+                                <TextBlock Text="X" />
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:DrawerView">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:DrawerView">
+                    <Grid x:Name="root"  HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                        <Grid.Resources>
+                            <Storyboard x:Name="animation">
+                                <DoubleAnimation x:Name="translateX" Storyboard.TargetName="translate" Storyboard.TargetProperty="X" />
+                                <DoubleAnimation x:Name="translateY" Storyboard.TargetName="translate" Storyboard.TargetProperty="Y" />
+                            </Storyboard>
+                        </Grid.Resources>
+                        <Grid x:Name="ContentContainer" Background="Transparent" 
+                              Width="{TemplateBinding PanelWidth}" 
+                              Height="{TemplateBinding PanelHeight}" 
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch">
+                            <Grid.RenderTransform>
+                                <TranslateTransform x:Name="translate" X="50"/>
+                            </Grid.RenderTransform>
+                            <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}" 
+                                          HorizontalContentAlignment="Stretch"
+                                          VerticalContentAlignment="Stretch"
+                                          HorizontalAlignment="Stretch" 
+                                          VerticalAlignment="Stretch">
+
+                            </ContentPresenter>
+                        </Grid>
+
+                        <Grid x:Name="mask" Background="Pink" Opacity="0.3"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style TargetType="controls:XListView">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="TabNavigation" Value="Once" />
+        <Setter Property="IsSwipeEnabled" Value="True" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled" />
+        <Setter Property="ScrollViewer.IsHorizontalRailEnabled" Value="False" />
+        <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled" />
+        <Setter Property="ScrollViewer.IsVerticalRailEnabled" Value="True" />
+        <Setter Property="ScrollViewer.ZoomMode" Value="Disabled" />
+        <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False" />
+        <Setter Property="ScrollViewer.BringIntoViewOnFocusChange" Value="True" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="ItemContainerTransitions">
+            <Setter.Value>
+                <TransitionCollection>
+                    <!--<AddDeleteThemeTransition />
+                    <ContentThemeTransition />
+                    <ReorderThemeTransition />
+                    <EntranceThemeTransition IsStaggeringEnabled="False" />-->
+                </TransitionCollection>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:XListView">
+                    <Grid BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer x:Name="ScrollViewer"
+                                      TabNavigation="{TemplateBinding TabNavigation}"
+                                      HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+                                      HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                      IsHorizontalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsHorizontalScrollChainingEnabled}"
+                                      VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+                                      VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                                      IsVerticalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsVerticalScrollChainingEnabled}"
+                                      IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+                                      IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+                                      ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}"
+                                      IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                                      BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
+                                      AutomationProperties.AccessibilityView="Raw">
+                            <ItemsPresenter
+                                x:Name="Presenter"
+                                Header="{TemplateBinding Header}"
+                                HeaderTemplate="{TemplateBinding HeaderTemplate}"
+                                HeaderTransitions="{TemplateBinding HeaderTransitions}"
+                                Footer="{TemplateBinding Footer}"
+                                FooterTemplate="{TemplateBinding FooterTemplate}"
+                                FooterTransitions="{TemplateBinding FooterTransitions}"
+                                Padding="{TemplateBinding Padding}"/>
+                        </ScrollViewer>
+                        <Grid x:Name="RefreshIcon" VerticalAlignment="Top" Width="54" Height="54" Visibility="Collapsed" HorizontalAlignment="Center"   CornerRadius="27">
+                            <Grid Opacity="0.8">
+                                <Image Source="/Assets/Icons/RefreshIconBg.png" Opacity="0.2" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            </Grid>
+                            <Grid x:Name="RefreshSymble" HorizontalAlignment="Center" VerticalAlignment="Center" Width="36" Height="36">
+                                <Path Data="F1M36,18C36,27.941 27.941,36 18,36 8.059,36 0,27.941 0,18 0,8.059 8.059,0 18,0 27.941,0 36,8.059 36,18" Fill="White" Width="36" Height="36"/>
+                                <Path  HorizontalAlignment="Center" VerticalAlignment="Center"   Data="F1M11.567,0C7.292,0,3.712,2.998,2.799,7L0.501,7C0.102,7,-0.136,7.445,0.085,7.777L3.151,12.376C3.349,12.673,3.785,12.673,3.983,12.376L7.049,7.777C7.27,7.445,7.032,7,6.633,7L4.862,7C5.725,4.112 8.403,2 11.567,2 15.426,2 18.567,5.141 18.567,9 18.567,12.859 15.426,16 11.567,16 11.014,16 10.567,16.447 10.567,17 10.567,17.553 11.014,18 11.567,18 16.53,18 20.567,13.963 20.567,9 20.567,4.037 16.53,0 11.567,0" Fill="#FFBC3A39"  Margin="-3,2,0,2"/>
+                            </Grid>
+                        </Grid>
+                        <Grid x:Name="RefreshingIcon" Visibility="Collapsed" VerticalAlignment="Top" Width="54" Height="54" HorizontalAlignment="Center"   CornerRadius="27">
+                            <Grid Opacity="0.8">
+                                <Image Source="/Assets/Icons/RefreshIconBg.png" Opacity="0.2" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            </Grid>
+                            <Path HorizontalAlignment="Center" Opacity="0.8" VerticalAlignment="Center" Data="F1M36,18C36,27.941 27.941,36 18,36 8.059,36 0,27.941 0,18 0,8.059 8.059,0 18,0 27.941,0 36,8.059 36,18" Fill="White" Height="36"   Width="36"/>
+                            <ProgressRing IsActive="True" Width="18" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFBC3A39"/>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:XGridView">
+        <Setter Property="Padding" Value="0,0,0,10" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="TabNavigation" Value="Once" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled" />
+        <Setter Property="ScrollViewer.IsHorizontalRailEnabled" Value="False" />
+        <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled" />
+        <Setter Property="ScrollViewer.IsVerticalRailEnabled" Value="True" />
+        <Setter Property="ScrollViewer.ZoomMode" Value="Disabled" />
+        <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False" />
+        <Setter Property="ScrollViewer.BringIntoViewOnFocusChange" Value="True" />
+        <Setter Property="IsSwipeEnabled" Value="True" />
+        <Setter Property="ItemContainerTransitions">
+            <Setter.Value>
+                <TransitionCollection>
+                    <!--<AddDeleteThemeTransition />
+                    <ContentThemeTransition />
+                    <ReorderThemeTransition />
+                    <EntranceThemeTransition IsStaggeringEnabled="False" />-->
+                </TransitionCollection>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal"  />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:XGridView">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <ScrollViewer x:Name="ScrollViewer"
+                                  TabNavigation="{TemplateBinding TabNavigation}"
+                                  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+                                  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                  IsHorizontalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsHorizontalScrollChainingEnabled}"
+                                  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+                                  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                                  IsVerticalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsVerticalScrollChainingEnabled}"
+                                  IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+                                  IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+                                  ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}"
+                                  IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                                  BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
+                                  AutomationProperties.AccessibilityView="Raw">
+                            <ItemsPresenter
+                            x:Name="Presenter"
+                            Header="{TemplateBinding Header}"
+                            HeaderTemplate="{TemplateBinding HeaderTemplate}"
+                            HeaderTransitions="{TemplateBinding HeaderTransitions}"
+                            Footer="{TemplateBinding Footer}"
+                            FooterTemplate="{TemplateBinding FooterTemplate}"
+                            FooterTransitions="{TemplateBinding FooterTransitions}"
+                            Padding="{TemplateBinding Padding}"/>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="controls:XImage">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:XImage">
+                    <Grid Margin="{TemplateBinding Padding}">
+                        <Grid x:Name="DefaultGrid">
+                            <Grid.Background>
+                                <ImageBrush x:Name="DefaultImage"/>
+                            </Grid.Background>
+                        </Grid>
+                        <Grid x:Name="OverrideGrid">
+                            <Grid.Background>
+                                <ImageBrush x:Name="OverrideImage"/>
+                            </Grid.Background>
+                        </Grid>
+                        <Grid x:Name="BorderGrid" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <x:Double x:Key="CornerSize">16</x:Double>
+    <x:Double x:Key="TransformSize">-8</x:Double>
+
+
+    <DataTemplate x:Key="CornerTemplate">
+        <Ellipse Height="{StaticResource CornerSize}"
+                 Width="{StaticResource CornerSize}"
+                 Fill="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                 Stroke="#FF666666"
+                 StrokeThickness="1">
+            <Ellipse.RenderTransform>
+                <CompositeTransform TranslateX="{StaticResource TransformSize}"
+                                    TranslateY="{StaticResource TransformSize}" />
+            </Ellipse.RenderTransform>
+        </Ellipse>
+    </DataTemplate>
+
+</ResourceDictionary>
+    

@@ -1,0 +1,33 @@
+﻿<local:PageBase
+    x:Class="NeUWP.Demo.TestListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NeUWP.Views"
+    xmlns:ctl="using:NeUWP.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <StackPanel>
+                <TextBlock Text="1.实现了下拉刷新效果"/>
+                <TextBlock Text="2.使用了Framework中的一些东东，可以看到做页面非常方便" TextWrapping="Wrap"/>
+                <TextBlock Text="3.一些基本状态已经抽象，ui上可以根据这些状态定制，这儿省略" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Grid>
+            <ctl:XListView  Grid.Row="1" IsAutoPadding="True" MaxContentWidth="700" MinHorizonPadding="12"  ItemsSource="{Binding Datas}"  IsPullRefresh="True"    >
+            <ctl:XListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="100">
+                        <TextBlock Text="{Binding}" FontSize="15" Foreground="Black"/>
+                    </Grid>
+                </DataTemplate>
+            </ctl:XListView.ItemTemplate>
+        </ctl:XListView>
+    </Grid>
+</local:PageBase>

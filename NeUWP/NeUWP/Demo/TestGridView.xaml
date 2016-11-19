@@ -1,0 +1,120 @@
+﻿<local:PageBase
+    x:Class="NeUWP.Demo.TestGridView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NeUWP.Views"
+    xmlns:ctl="using:NeUWP.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <SolidColorBrush x:Key="PageBackgroundColor">#FFFAFAFC</SolidColorBrush>
+        <Style x:Key="GridViewItemERStyle" TargetType="GridViewItem">
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+            <Setter Property="TabNavigation" Value="Local"/>
+            <Setter Property="IsHoldingEnabled" Value="True"/>
+            <Setter Property="MinHeight" Value="0" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GridViewItem">
+                        <Grid HorizontalAlignment="Stretch" Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="ContentMask"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="{ThemeResource GridViewItemHoverDuration}"
+                                                         To="{ThemeResource GridViewItemHoverOpacity}"/>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="ContentMask"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="{ThemeResource GridViewItemPressedDuration}"
+                                                         To="{ThemeResource GridViewItemPressedOpacity}"/>
+                                            <PointerDownThemeAnimation TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOverSelected">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="ContentMask"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="{ThemeResource GridViewItemHoverDuration}"
+                                                         To="{ThemeResource GridViewItemHoverOpacity}"/>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PressedSelected">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="ContentMask"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="{ThemeResource GridViewItemPressedDuration}"
+                                                         To="{ThemeResource GridViewItemPressedOpacity}"/>
+                                            <PointerDownThemeAnimation TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="ContentPresenter" FontSize="{TemplateBinding FontSize}" Padding="0" HorizontalAlignment="Stretch" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"/>
+                            <Grid Grid.Row="1" x:Name="ContentMask" HorizontalAlignment="Stretch" Background="{StaticResource PageBackgroundColor}" Opacity="0.0" VerticalAlignment="Stretch" IsHitTestVisible="False"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="Red" HorizontalAlignment="Stretch" >
+            <TextBlock Text="每行使用固定个数来伸缩item大小" Foreground="White" />
+        </Grid>
+        <ctl:XGridView Grid.Row="1" IsAutoSize="True" HorizontalAlignment="Stretch" ItemsSource="{Binding}"    HorizonMargin="10" VerticalMargin="10"  UseConstColumnCount="3" ItemContainerStyle="{StaticResource GridViewItemERStyle}" >
+            <ctl:XGridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" >
+                        <ctl:XImage DefaultSource="Assets/StoreLogo.png" HWRate="1" SourceUri="http://img2.cache.netease.com/news/2016/11/18/2016111813354234329.jpg"/>
+                    </Grid>
+                </DataTemplate>
+            </ctl:XGridView.ItemTemplate>
+        </ctl:XGridView>
+        <Grid Grid.Row="2" Background="Green">
+            <TextBlock Text="对每个item宽度设置区间，且根据item宽高比进行伸缩适配"  Foreground="White"/>
+        </Grid>
+        <ctl:XGridView Grid.Row="3" IsAutoSize="True" HorizontalAlignment="Stretch" ItemsSource="{Binding}"   MinItemWidth="100" MaxItemWidth="200"  HorizonMargin="10" VerticalMargin="10"   ItemContainerStyle="{StaticResource GridViewItemERStyle}" >
+            <ctl:XGridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" >
+                        <ctl:XImage DefaultSource="Assets/StoreLogo.png" HWRate="1" SourceUri="http://img2.cache.netease.com/news/2016/11/18/2016111813354234329.jpg"/>
+                    </Grid>
+                </DataTemplate>
+            </ctl:XGridView.ItemTemplate>
+        </ctl:XGridView>
+    </Grid>
+</local:PageBase>

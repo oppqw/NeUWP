@@ -1,0 +1,45 @@
+﻿<UserControl
+    x:Class="NeUWP.Controls.ToastView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NeUWP.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="44"
+    d:DesignWidth="128">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="iconToastTemplate">
+            <Grid x:Name="LayoutRoot" Background="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" MinHeight="1"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+               <!-- <local:ToastIcon Grid.Row="0" Margin="0,20,0,0" ToastType="{Binding Type}" HorizontalAlignment="Center"/>-->
+                <Grid Grid.Row="1" BorderBrush="Transparent" BorderThickness="0">
+                    <TextBlock Text="{Binding Description}" Margin="16,13,16,14" Padding="0" TextWrapping="Wrap" FontSize="15" Foreground="White" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    <Grid x:Name="root" Opacity="0" Background="#F6303030">
+        <ContentPresenter x:Name="container" MinWidth="128" MinHeight="44"/>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="ShowStates">
+                <VisualState x:Name="Normal"  />
+                <VisualState x:Name="ShowState" >
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3"/>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="HideState" >
+                    <Storyboard Completed="Storyboard_Completed">
+                        <DoubleAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3"/>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</UserControl>

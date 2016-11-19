@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{6ABE9D39-3AB4-4C00-9A9A-06D4A9ADA54E}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NeUWP</RootNamespace>
+    <AssemblyName>NeUWP</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>NeUWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\TestGridView.xaml.cs">
+      <DependentUpon>TestGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\TestListView.xaml.cs">
+      <DependentUpon>TestListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\TestPivot.xaml.cs">
+      <DependentUpon>TestPivot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\CommonConverters.cs" />
+    <Compile Include="Library\Controls\AwaitConatainer\AwaitableContainer.cs" />
+    <Compile Include="Library\Controls\AwaitConatainer\Dialog\Child\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Controls\AwaitConatainer\Dialog\Child\ToastView.xaml.cs">
+      <DependentUpon>ToastView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Controls\AwaitConatainer\Dialog\MDilog.cs" />
+    <Compile Include="Library\Controls\AwaitConatainer\Drawer\DrawerCloserObserver.cs" />
+    <Compile Include="Library\Controls\AwaitConatainer\Drawer\DrawerView.cs" />
+    <Compile Include="Library\Controls\AwaitConatainer\Drawer\MDrawer.cs" />
+    <Compile Include="Library\Controls\AwaitConatainer\Drawer\ScrollViewerBehavior4Drawer.cs" />
+    <Compile Include="Demo\AwaitableContainer\DrawerContent.xaml.cs">
+      <DependentUpon>DrawerContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\AwaitableContainer\TestDialog.cs" />
+    <Compile Include="Demo\AwaitableContainer\TestDialog1.xaml.cs">
+      <DependentUpon>TestDialog1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\AwaitableContainer\TestDialog2.xaml.cs">
+      <DependentUpon>TestDialog2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\AwaitableContainer\TestNDrawer.xaml.cs">
+      <DependentUpon>TestNDrawer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demo\AwaitableContainer\TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Framework\Collection\CMCollectionAdaper.cs" />
+    <Compile Include="Library\Framework\Collection\IncrementalCollection.cs" />
+    <Compile Include="Library\Framework\Interface\IbAackContainerInterface.cs" />
+    <Compile Include="Library\Framework\Interface\IBackAble.cs" />
+    <Compile Include="Library\Framework\Interface\IControlAwait.cs" />
+    <Compile Include="Library\Framework\Interface\ICorssPageAble.cs" />
+    <Compile Include="Library\Framework\Interface\IIgnoreBack.cs" />
+    <Compile Include="Library\Framework\Interface\MaskInterface.cs" />
+    <Compile Include="Library\Controls\VisualTreeHelperExtensions.cs" />
+    <Compile Include="Library\Controls\Image\TestXImage.xaml.cs">
+      <DependentUpon>TestXImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Controls\Image\XBitmapImage.cs" />
+    <Compile Include="Library\Controls\Image\XImage.cs" />
+    <Compile Include="Library\Controls\MItemsControl\XGridView.cs" />
+    <Compile Include="Library\Controls\MItemsControl\XListView.cs" />
+    <Compile Include="Library\Controls\MPivot.xaml.cs">
+      <DependentUpon>MPivot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Framework\View\PageBase.cs" />
+    <Compile Include="Library\Framework\DeferUpdate\DeferUpdateHelper.cs" />
+    <Compile Include="Library\Framework\DeferUpdate\IDeferUpdate.cs" />
+    <Compile Include="Library\Framework\Data\Interface\IBindable.cs" />
+    <Compile Include="Library\Framework\Data\Interface\IViewModelPage.cs" />
+    <Compile Include="Library\Framework\Util\JsonUtil.cs" />
+    <Compile Include="Library\Controls\Triggers\ControlSizeTrigger.cs" />
+    <Compile Include="Library\Controls\Triggers\DeviceFamilyTrigger.cs" />
+    <Compile Include="Library\Controls\Triggers\InputTypeTrigger.cs" />
+    <Compile Include="Library\Framework\Util\UIHelper.cs" />
+    <Compile Include="Library\Framework\Util\DevUtil.cs" />
+    <Compile Include="Library\Framework\Util\DispatcherUtil.cs" />
+    <Compile Include="Library\Framework\Data\ViewModelBase.cs" />
+    <Compile Include="Library\Framework\Data\Interface\ViewModelExtensions.cs" />
+    <Compile Include="Library\Framework\Data\ViewModelPageBase.cs" />
+    <Compile Include="Library\Framework\Data\ListPageViewModelBase.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Library\Framework\View\NMPageContainer.xaml.cs">
+      <DependentUpon>NMPageContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="NeUWP_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Demo\TestGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demo\TestListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demo\TestPivot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Library\Controls\AwaitConatainer\Dialog\Child\MenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Library\Controls\AwaitConatainer\Dialog\Child\ToastView.DeviceFamily-Mobile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Library\Controls\AwaitConatainer\Dialog\Child\ToastView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\AwaitableContainer\DrawerContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\AwaitableContainer\TestDialog1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\AwaitableContainer\TestDialog2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\AwaitableContainer\TestNDrawer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demo\AwaitableContainer\TestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Library\Controls\Image\TestXImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Library\Controls\MPivot.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Library\Framework\View\NMPageContainer.DeviceFamily-Mobile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Library\Framework\View\NMPageContainer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\PlatformStyles.DeviceFamily-Mobile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\PlatformStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\UI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
