@@ -99,6 +99,7 @@ namespace NeUWP
                 {
                     PageContainer.Close();
                     e.Handled = true;
+                    return;
                 }
 
                 if (PageContainer.PageFrame.CanGoBack) {
