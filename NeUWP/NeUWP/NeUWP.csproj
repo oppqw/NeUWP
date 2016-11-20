@@ -142,7 +142,7 @@
     <Compile Include="Library\Framework\Interface\IIgnoreBack.cs" />
     <Compile Include="Library\Framework\Interface\MaskInterface.cs" />
     <Compile Include="Library\Controls\VisualTreeHelperExtensions.cs" />
-    <Compile Include="Library\Controls\Image\TestXImage.xaml.cs">
+    <Compile Include="Demo\TestXImage.xaml.cs">
       <DependentUpon>TestXImage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Library\Controls\Image\XBitmapImage.cs" />
@@ -241,7 +241,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Library\Controls\Image\TestXImage.xaml">
+    <Page Include="Demo\TestXImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
