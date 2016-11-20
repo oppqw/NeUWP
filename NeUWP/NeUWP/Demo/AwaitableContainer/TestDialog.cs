@@ -17,8 +17,8 @@ namespace NeUWP.Controls
     {
         public static async void TestNormalDialog()
         {
-            var _value = await UIHelper.ShowDilog(new TestDialog1(), false, true, true);
-            UIHelper.ShowToast( _value as string, ToastIconType.Ok, "title");
+            var _value = await UIHelper.ShowDilog(new TestDialog1(), false, true, true);//显示弹窗，由用户在弹窗输入选择
+            UIHelper.ShowToast( _value as string, ToastIconType.Ok, "title");//显示toast
         }
 
         static int i = 0;

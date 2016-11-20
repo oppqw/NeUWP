@@ -24,6 +24,7 @@ namespace NeUWP.Controls
             this.InitializeComponent();
         }
 
+        //实现IDialogChild接口,会在显示之前，将父控件给注入进来，在这主要用来船值出去给父控件，从而发送给调用方
         public MDilog ParentDialog
         {
             set; get;
@@ -34,6 +35,7 @@ namespace NeUWP.Controls
             ParentDialog.ChangeChildView(new TestDialog2(this));
         }
 
+        //用户选择了bbb
         private void OnSetValue(object sender, RoutedEventArgs e)
         {
             ParentDialog.HideWithResult("bbb");

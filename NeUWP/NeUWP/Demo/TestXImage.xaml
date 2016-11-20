@@ -9,6 +9,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <local:XImage SourceUri="http://img2.cache.netease.com/news/2016/11/18/20161118133727f6344.jpg"/>
+        <local:XImage SourceUri="http://img2.cache.netease.com/news/2016/11/18/20161118133727f6344.jpg"  Round="True" Width="100" Height="100" />
     </Grid>
 </views:PageBase>
